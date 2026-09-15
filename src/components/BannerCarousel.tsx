@@ -160,7 +160,7 @@ export default function BannerCarousel() {
             {BANNERS.map((banner, index) => (
               <div
                 key={banner.id}
-                className="w-full flex-shrink-0 relative h-[280px] sm:h-[380px] md:h-[460px] lg:h-[520px] bg-white overflow-hidden"
+                className="w-full flex-shrink-0 relative h-[180px] xs:h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] bg-white overflow-hidden"
               >
                 <Link
                   href={banner.link}
@@ -191,10 +191,10 @@ export default function BannerCarousel() {
               e.stopPropagation();
               goToPrev();
             }}
-            className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-200 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-105 active:scale-95 z-20 focus:outline-none"
+            className="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-200 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-105 active:scale-95 z-20 focus:outline-none"
             aria-label="Previous banner"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
+            <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.2]" />
           </button>
 
           {/* Right Navigation Arrow */}
@@ -205,10 +205,10 @@ export default function BannerCarousel() {
               e.stopPropagation();
               goToNext();
             }}
-            className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-200 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-105 active:scale-95 z-20 focus:outline-none"
+            className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/80 hover:bg-white text-slate-800 shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-200 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-105 active:scale-95 z-20 focus:outline-none"
             aria-label="Next banner"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
+            <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.2]" />
           </button>
 
           {/* Clean Pagination Dots (Matching Reference Design) */}

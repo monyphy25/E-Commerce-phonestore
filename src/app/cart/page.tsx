@@ -54,45 +54,52 @@ export default function CartPage() {
             {cart.items.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col sm:flex-row items-center gap-5 p-5 bg-white border border-slate-200 rounded-2xl relative group shadow-sm hover:shadow-md transition-shadow"
+                className="flex flex-row items-center gap-4 p-4 sm:p-5 bg-white border border-slate-200 rounded-2xl relative group shadow-xs hover:shadow-md transition-shadow"
               >
-                <button
-                  onClick={() => cart.removeItem(item.id)}
-                  className="absolute top-4 right-4 sm:top-1/2 sm:-translate-y-1/2 text-slate-400 hover:text-red-500 p-2 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all bg-slate-50 hover:bg-red-50 rounded-full border border-slate-200"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-
-                <div className="w-28 h-28 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                <div className="w-20 h-20 sm:w-28 sm:h-28 bg-slate-100 rounded-xl overflow-hidden shrink-0 border border-slate-200 p-2 flex items-center justify-center">
+                  <img src={item.image} alt={item.name} className="max-w-full max-h-full object-contain mix-blend-multiply" />
                 </div>
 
-                <div className="flex-1 flex flex-col justify-center w-full">
-                  <div className="mb-1 text-[11px] text-blue-600 font-bold uppercase tracking-widest">{item.brand}</div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2 pr-8 sm:pr-12">{item.name}</h3>
+                <div className="flex-1 flex flex-col justify-between min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="text-[10px] sm:text-[11px] text-blue-600 font-bold uppercase tracking-widest">{item.brand}</div>
+                      <h3 className="text-sm sm:text-lg font-bold text-slate-900 leading-snug line-clamp-1">{item.name}</h3>
+                    </div>
 
-                  <div className="flex gap-4 mb-4 text-xs text-slate-500 font-medium">
+                    <button
+                      onClick={() => cart.removeItem(item.id)}
+                      className="text-slate-400 hover:text-red-500 p-1.5 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                      aria-label="Remove item"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="flex gap-3 my-1.5 text-xs text-slate-500 font-medium">
                     {item.storage && <span>Storage: <span className="text-slate-700">{item.storage}</span></span>}
                     {item.color && <span>Color: <span className="text-slate-700">{item.color}</span></span>}
                   </div>
 
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="text-xl font-bold text-slate-900">${item.price.toLocaleString()}</div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mt-1">
+                    <div className="text-base sm:text-xl font-extrabold text-slate-900">${item.price.toLocaleString()}</div>
 
                     {/* Quantity */}
-                    <div className="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-full p-1 mr-0 sm:mr-10">
+                    <div className="flex items-center gap-1 sm:gap-2 bg-slate-100 border border-slate-200 rounded-full p-1">
                       <button
                         onClick={() => cart.updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-500 hover:text-slate-900 transition-colors border border-transparent hover:border-slate-200"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-500 hover:text-slate-900 transition-colors border border-transparent hover:border-slate-200"
+                        aria-label="Decrease quantity"
                       >
-                        <Minus className="w-3.5 h-3.5" />
+                        <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </button>
-                      <span className="w-6 text-center font-semibold text-sm text-slate-800">{item.quantity}</span>
+                      <span className="w-5 sm:w-6 text-center font-semibold text-xs sm:text-sm text-slate-800">{item.quantity}</span>
                       <button
                         onClick={() => cart.updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-500 hover:text-slate-900 transition-colors border border-transparent hover:border-slate-200"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-white text-slate-500 hover:text-slate-900 transition-colors border border-transparent hover:border-slate-200"
+                        aria-label="Increase quantity"
                       >
-                        <Plus className="w-3.5 h-3.5" />
+                        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </button>
                     </div>
                   </div>

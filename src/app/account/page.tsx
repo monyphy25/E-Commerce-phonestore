@@ -13,15 +13,20 @@ export default function AccountPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("/api/customers")
+    fetch("/api/me")
       .then((res) => res.json())
       .then((data) => {
-        if (data.customers && data.customers.length > 0) {
-          setUser(data.customers[0]);
+        if (data && data.email && !data.error) {
+          setUser(data);
+        } else {
+          router.push("/login");
         }
       })
+      .catch(() => {
+        router.push("/login");
+      })
       .finally(() => setLoading(false));
-  }, []);
+  }, [router]);
 
   const handleSignOut = async () => {
     setSigningOut(true);

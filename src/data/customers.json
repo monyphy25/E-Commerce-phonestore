@@ -1,22 +1,12 @@
 [
   {
-    "id": "cust_1789197117696",
-    "name": "Dyna",
-    "email": "mny207708@gmail.com",
-    "phone": "N/A",
-    "orders": 0,
-    "spent": "$0",
-    "joined": "12 Sept 2026",
-    "role": "Customer"
-  },
-  {
-    "id": "cust_1789196938685",
+    "id": "cust_1789467172858",
     "name": "Mony",
     "email": "monyphy04@gmail.com",
     "phone": "N/A",
     "orders": 0,
     "spent": "$0",
-    "joined": "12 Sept 2026",
+    "joined": "15 Sept 2026",
     "role": "Customer"
   },
   {
@@ -30,13 +20,13 @@
     "role": "Admin"
   },
   {
-    "id": "cust_1789197414460",
+    "id": "cust_1789467195510",
     "name": "admin",
     "email": "admin@phonestore.com",
     "phone": "N/A",
     "orders": 0,
     "spent": "$0",
-    "joined": "12 Sept 2026",
+    "joined": "15 Sept 2026",
     "role": "Admin"
   }
 ]

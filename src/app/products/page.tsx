@@ -201,26 +201,27 @@ export default function ProductsPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 md:py-8 flex flex-col md:flex-row gap-6 md:gap-8">
 
-        {/* ── Sidebar Filters ── */}
+        {/* ── Sidebar Filters (Horizontal pills on mobile/tablet, vertical sidebar on desktop) ── */}
         <aside className="w-full md:w-52 flex-shrink-0">
-          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm sticky top-24">
-            <h2 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 md:p-5 shadow-xs md:sticky md:top-24">
+            <h2 className="text-xs md:text-sm font-bold text-slate-900 mb-3 md:mb-4 flex items-center gap-2">
               <SlidersHorizontal size={15} className="text-blue-600" /> Filters
             </h2>
 
             <div>
-              <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Brand</h3>
-              <div className="space-y-1.5">
+              <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 md:mb-3">Brand</h3>
+              <div className="flex md:flex-col gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-hide">
                 {BRANDS.map((brand) => (
                   <button
                     key={brand}
                     onClick={() => setSelectedBrand(brand)}
-                    className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition-all ${selectedBrand === brand
-                      ? "bg-blue-600 text-white"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                      }`}
+                    className={`whitespace-nowrap md:w-full text-left px-3 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-medium transition-all shrink-0 ${
+                      selectedBrand === brand
+                        ? "bg-blue-600 text-white shadow-xs"
+                        : "text-slate-600 bg-slate-50 md:bg-transparent hover:bg-slate-100 hover:text-slate-900"
+                    }`}
                   >
                     {brand}
                   </button>
@@ -233,15 +234,15 @@ export default function ProductsPage() {
         {/* ── Main Content ── */}
         <div className="flex-1 min-w-0">
           {/* Page heading */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">The Latest Brands Are Here</h1>
-            <p className="text-sm text-slate-500 mt-1">Browse the newest phones by brand — scroll to explore more</p>
+          <div className="mb-6 md:mb-8">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">The Latest Brands Are Here</h1>
+            <p className="text-xs md:text-sm text-slate-500 mt-1">Browse the newest phones by brand — scroll to explore more</p>
           </div>
 
           {/* Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl mb-8">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl mb-6 md:mb-8">
             <div className="flex items-center gap-2 flex-1 min-w-0">
-              <p className="text-sm text-slate-500 shrink-0">
+              <p className="text-xs sm:text-sm text-slate-500">
                 Showing <span className="font-bold text-slate-900">{filteredProducts.length}</span> products
                 {selectedBrand !== "All" && (
                   <span className="ml-1">in <span className="text-blue-600 font-semibold">{selectedBrand}</span></span>
@@ -251,16 +252,16 @@ export default function ProductsPage() {
                 )}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
               {/* Inline search bar */}
-              <div className="relative">
+              <div className="relative flex-1 sm:flex-none">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search products..."
-                  className="pl-8 pr-8 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 w-44 sm:w-52 transition-all"
+                  className="w-full sm:w-52 pl-8 pr-8 py-1.5 text-xs bg-white border border-slate-200 rounded-full focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
                 />
                 {searchQuery && (
                   <button
@@ -277,7 +278,7 @@ export default function ProductsPage() {
                   onClick={() => setSelectedBrand("All")}
                   className="text-xs text-slate-500 hover:text-red-500 transition-colors whitespace-nowrap"
                 >
-                  ✕ Clear filter
+                  ✕ Clear
                 </button>
               )}
             </div>

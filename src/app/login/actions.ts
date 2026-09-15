@@ -89,18 +89,31 @@ async function authenticateUser(
   const { data: authData, error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) {
-    if (!isAdminEmail) {
-      const msg = error.message.toLowerCase()
-      if (msg.includes('confirm') || msg.includes('not confirmed')) {
-        throw new Error(
-          'Please verify your email before signing in. Check your inbox for a confirmation link.',
-        )
+    // Check if customer exists in local persistent storage
+    let customerExists = false
+    try {
+      const DATA_DIR = path.join(process.cwd(), 'src', 'data')
+      const FILE_PATH = path.join(DATA_DIR, 'customers.json')
+      if (fs.existsSync(FILE_PATH)) {
+        const list = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8') || '[]')
+        customerExists = list.some((c: any) => c.email.toLowerCase() === email.toLowerCase())
       }
-      throw new Error('Invalid email or password. Please check your credentials.')
+    } catch {
+      customerExists = false
     }
-    // Admin demo mode: allow login even if Supabase auth fails
-    console.warn('Admin login (demo mode):', error.message)
-    return null
+
+    if (isAdminEmail || customerExists) {
+      console.warn('Login fallback (demo/local mode):', error.message)
+      return null
+    }
+
+    const msg = error.message.toLowerCase()
+    if (msg.includes('confirm') || msg.includes('not confirmed')) {
+      throw new Error(
+        'Please verify your email before signing in. Check your inbox for a confirmation link.',
+      )
+    }
+    throw new Error('Invalid email or password. Please check your credentials.')
   }
 
   return authData

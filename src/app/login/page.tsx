@@ -34,21 +34,22 @@ function LoginFormContent() {
       setPassword("admin123");
     }
 
-    // Check existing customer session
-    fetch("/api/customers")
+    // Check existing session from /api/me
+    fetch("/api/me")
       .then((res) => res.json())
       .then((data) => {
-        if (data.customers && data.customers.length > 0) {
-          const firstCust = data.customers[0];
-          setLoggedInUser({
-            email: firstCust.email,
-            role: firstCust.role || "CUSTOMER",
-            name: firstCust.name || firstCust.email.split("@")[0],
-          });
+        if (data && data.email && !data.error) {
+          const userRole = data.role?.toUpperCase() || "CUSTOMER";
+          if (userRole === "ADMIN") {
+            router.push("/admin");
+          } else {
+            router.push("/account");
+          }
+          router.refresh();
         }
       })
       .catch(() => {});
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   const fillDemoAdmin = () => {
     setActiveTab("admin");
@@ -91,18 +92,11 @@ function LoginFormContent() {
         console.warn("Sync customer notice:", syncErr);
       }
 
-      // Hide login form & set logged-in state
-      setUserLoggedIn(true);
-      setLoggedInUser({
-        email,
-        role: userRole,
-        name: userName,
-      });
-
+      // Redirect immediately to target page
       if (userRole === "ADMIN" || activeTab === "admin" || email.toLowerCase().includes("admin")) {
         router.push("/admin");
       } else {
-        router.push("/");
+        router.push("/account");
       }
       router.refresh();
     }

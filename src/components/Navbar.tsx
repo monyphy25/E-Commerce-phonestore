@@ -29,11 +29,11 @@ export default async function Navbar() {
     '';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-sm">
-      <div className="w-full flex h-15 items-center px-4 sm:px-6 lg:px-8 py-3 gap-4">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-xs">
+      <div className="w-full flex h-16 items-center px-4 sm:px-6 lg:px-8 py-3 gap-4">
 
         {/* ── Logo (far left) ── */}
-        <Link href="/" className="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-0.5 shrink-0 mr-auto lg:mr-0">
+        <Link href="/" className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-0.5 shrink-0 mr-auto lg:mr-0">
           Phone<span className="text-blue-600">Store</span>
         </Link>
 
@@ -82,7 +82,7 @@ export default async function Navbar() {
               </Link>
               <Link
                 href="/register"
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-xs"
               >
                 <UserPlus className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">Register</span>

@@ -137,61 +137,61 @@ export default function ProductDetailsPage() {
           Back to all products
         </Link>
 
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xs border border-slate-200 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             
             {/* Image Gallery Area */}
-            <div className="p-8 md:p-12 lg:p-16 flex items-center justify-center bg-white border-b md:border-b-0 md:border-r border-slate-100">
+            <div className="p-4 sm:p-8 md:p-12 lg:p-16 flex items-center justify-center bg-white border-b md:border-b-0 md:border-r border-slate-100 min-h-[260px] sm:min-h-[340px]">
               <img 
                 src={displayImage} 
                 alt={product.name}
-                className="max-w-full h-auto max-h-[500px] object-contain drop-shadow-xl mix-blend-multiply"
+                className="max-w-full h-auto max-h-[280px] sm:max-h-[400px] md:max-h-[500px] object-contain drop-shadow-xl mix-blend-multiply"
               />
             </div>
 
             {/* Product Info Area */}
-            <div className="p-8 md:p-12">
+            <div className="p-5 sm:p-8 md:p-12">
               {product.brand && (
-                <span className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-3 block">
+                <span className="text-xs sm:text-sm font-bold text-blue-600 tracking-wider uppercase mb-2 sm:mb-3 block">
                   {product.brand}
                 </span>
               )}
               
-              <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 sm:mb-4 leading-tight">
                 {product.name}
               </h1>
 
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-4 sm:mb-6">
                 <div className="flex items-center gap-1 text-yellow-400">
-                  <Star size={18} fill="currentColor" />
-                  <Star size={18} fill="currentColor" />
-                  <Star size={18} fill="currentColor" />
-                  <Star size={18} fill="currentColor" />
-                  <Star size={18} fill="currentColor" className="text-slate-200" />
-                  <span className="text-sm font-semibold text-slate-600 ml-1">
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" />
+                  <Star size={16} fill="currentColor" className="text-slate-200" />
+                  <span className="text-xs sm:text-sm font-semibold text-slate-600 ml-1">
                     {product.rating || "4.5"} ({product.review_count || "128"} reviews)
                   </span>
                 </div>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <div className="flex items-end gap-3 mb-2">
-                  <span className="text-4xl font-extrabold text-slate-900">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-slate-900">
                     ${actualPrice.toLocaleString()}
                   </span>
                   {(product.discount_price || product.discountPrice) && (
-                    <span className="text-xl font-medium text-slate-400 line-through mb-1">
+                    <span className="text-lg sm:text-xl font-medium text-slate-400 line-through mb-1">
                       ${product.price.toLocaleString()}
                     </span>
                   )}
                 </div>
                 {inStock ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-bold">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs sm:text-sm font-bold">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     In Stock
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm font-bold">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs sm:text-sm font-bold">
                     <span className="w-2 h-2 rounded-full bg-red-500"></span>
                     Out of Stock
                   </span>
@@ -199,14 +199,14 @@ export default function ProductDetailsPage() {
               </div>
 
               {/* Color Selection */}
-              <div className="mb-6">
-                <h3 className="text-sm font-bold text-slate-900 mb-3">Color</h3>
-                <div className="flex flex-wrap gap-3">
+              <div className="mb-5 sm:mb-6">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mb-2 sm:mb-3">Color</h3>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {availableColors.map((colorOption) => (
                     <button
                       key={colorOption}
                       onClick={() => setSelectedColor(colorOption)}
-                      className={`px-4 py-2 rounded-xl text-sm font-bold transition-all border-2 ${
+                      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all border-2 ${
                         selectedColor === colorOption
                           ? "border-blue-600 bg-blue-50 text-blue-700"
                           : "border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
@@ -219,14 +219,14 @@ export default function ProductDetailsPage() {
               </div>
 
               {/* Storage Selection */}
-              <div className="mb-8">
-                <h3 className="text-sm font-bold text-slate-900 mb-3">Storage</h3>
-                <div className="flex flex-wrap gap-3">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mb-2 sm:mb-3">Storage</h3>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {availableStorages.map((storageOption) => (
                     <button
                       key={storageOption}
                       onClick={() => setSelectedStorage(storageOption)}
-                      className={`px-4 py-2 rounded-xl text-sm font-bold transition-all border-2 ${
+                      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all border-2 ${
                         selectedStorage === storageOption
                           ? "border-blue-600 bg-blue-50 text-blue-700"
                           : "border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50"

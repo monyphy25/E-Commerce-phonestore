@@ -35,10 +35,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <AdminGuard user={user} isAdmin={isAdmin}>
-      <div className="flex min-h-screen bg-slate-50">
+      <div className="flex flex-col lg:flex-row min-h-screen bg-slate-50">
         <AdminSidebar />
-        <div className="flex-1 flex flex-col overflow-auto">
-          <div className="p-6 md:p-10 flex-1">
+        <div className="flex-1 flex flex-col min-w-0 overflow-auto">
+          <div className="p-4 sm:p-6 md:p-10 flex-1 w-full">
             {children}
           </div>
         </div>

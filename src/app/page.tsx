@@ -206,7 +206,7 @@ export default function Home() {
             <p className="text-sm">Loading devices...</p>
           </div>
         ) : filtered.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
             {filtered.slice(0, 25).map((p) => {
               const formattedProduct = {
                 id: String(p.id),
@@ -239,11 +239,11 @@ export default function Home() {
         )}
 
         {/* ── Trust badges row ── */}
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-10 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {TRUST_BADGES.map(({ icon: Icon, title, desc, color }) => (
-            <div key={title} className="flex items-center gap-3 bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-sm">
-              <div className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200">
-                <Icon size={18} className={color} />
+            <div key={title} className="flex items-center gap-3 bg-white border border-slate-200 rounded-2xl p-3 sm:px-4 sm:py-3 shadow-xs">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200">
+                <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${color}`} />
               </div>
               <div>
                 <p className="text-xs font-bold text-slate-800 leading-tight">{title}</p>

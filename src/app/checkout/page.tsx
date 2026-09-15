@@ -154,13 +154,13 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 w-full">
       {/* Breadcrumb Steps */}
-      <div className="flex items-center gap-2 text-sm mb-8">
+      <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm mb-6 sm:mb-8 overflow-x-auto pb-1 scrollbar-hide">
         {(["info", "payment", "confirm"] as Step[]).map((s, i) => (
-          <div key={s} className="flex items-center gap-2">
-            {i > 0 && <ChevronRight size={14} className="text-gray-600" />}
-            <span className={`font-semibold capitalize ${step === s ? "text-blue-400" : "text-gray-500"}`}>
+          <div key={s} className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {i > 0 && <ChevronRight size={14} className="text-gray-600 shrink-0" />}
+            <span className={`font-semibold capitalize whitespace-nowrap ${step === s ? "text-blue-400" : "text-gray-500"}`}>
               {i + 1}. {s === "info" ? "Information" : s === "payment" ? "Payment" : "Confirm"}
             </span>
           </div>
